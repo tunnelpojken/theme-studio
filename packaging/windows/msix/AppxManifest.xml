@@ -10,11 +10,10 @@
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:uap6="http://schemas.microsoft.com/appx/manifest/uap/windows10/6"
   xmlns:desktop6="http://schemas.microsoft.com/appx/manifest/desktop/windows10/6"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap uap5 uap6 desktop6 rescap">
+  IgnorableNamespaces="uap uap6 desktop6 rescap">
 
   <Identity Name="@NAME@" Publisher="@PUBLISHER@" Version="@VERSION@" ProcessorArchitecture="x64" />
 
@@ -47,23 +46,9 @@
       </uap:VisualElements>
     </Application>
 
-    <!-- The command line: no Start entry, but `theme-studio` works in any terminal -->
-    <Application Id="ThemeStudioCli" Executable="theme-studio.exe" EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements
-        DisplayName="Theme Studio (command line)"
-        Description="Theme Studio command line"
-        BackgroundColor="transparent"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png"
-        AppListEntry="none" />
-      <Extensions>
-        <uap5:Extension Category="windows.appExecutionAlias">
-          <uap5:AppExecutionAlias>
-            <uap5:ExecutionAlias Alias="theme-studio.exe" />
-          </uap5:AppExecutionAlias>
-        </uap5:Extension>
-      </Extensions>
-    </Application>
+    <!-- No command line in the Store package: an app without a Start entry counts as
+         "headless", which the Store refuses. theme-studio.exe still ships in the folder;
+         the GitHub installer and pipx give the command line. -->
   </Applications>
 
   <!-- A packaged app doesn't search PATH or the directories Python adds for DLLs, so Qt's
