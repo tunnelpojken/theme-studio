@@ -8,7 +8,8 @@ Windows keeps the accent in three places under HKCU\\Software\\Microsoft\\Window
                                     StartColorMenu  REG_DWORD, a darker shade (Start, taskbar)
   DWM                               AccentColor     0xAABBGGRR, ColorizationColor 0xAARRGGBB,
                                     ColorPrevalence 1 = accent on title bars and borders
-  CurrentVersion\\Themes\\Personalize ColorPrevalence 1 = accent on Start and taskbar (dark only)
+  CurrentVersion\\Themes\\Personalize ColorPrevalence 1 = accent on Start and taskbar (needs a dark
+                                                    taskbar, which windows-mode always sets)
 AccentPalette's layout isn't documented by Microsoft; it follows what Windows writes itself.
 Every old value goes into the undo record first.
 """
@@ -66,8 +67,8 @@ class WindowsAccent(Target):
             s.set_reg(DWM, "ColorizationColor", "REG_DWORD", argb(accent))
             s.set_reg(DWM, "ColorizationAfterglow", "REG_DWORD", argb(accent))
             s.set_reg(DWM, "ColorPrevalence", "REG_DWORD", 1)
-            # Windows only shows the accent on Start and the taskbar in dark mode
-            s.set_reg(PERSONALIZE, "ColorPrevalence", "REG_DWORD", 1 if p.dark else 0)
+            # Accent on Start and the taskbar (windows-mode keeps them dark, which this needs)
+            s.set_reg(PERSONALIZE, "ColorPrevalence", "REG_DWORD", 1)
             platform.broadcast_settings_change()
-        where = "Start, taskbar and title bars" if p.dark else "title bars (light mode keeps Start and taskbar light)"
-        return [Action(f"set the accent colour to {accent} on {where} (registry: Accent, DWM)", go, True)]
+        return [Action(f"set the accent colour to {accent} on Start, the taskbar and title bars "
+                       f"(registry: Accent, DWM)", go, True)]
