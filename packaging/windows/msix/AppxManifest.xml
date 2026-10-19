@@ -11,9 +11,10 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:uap6="http://schemas.microsoft.com/appx/manifest/uap/windows10/6"
   xmlns:desktop6="http://schemas.microsoft.com/appx/manifest/desktop/windows10/6"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap uap5 desktop6 rescap">
+  IgnorableNamespaces="uap uap5 uap6 desktop6 rescap">
 
   <Identity Name="@NAME@" Publisher="@PUBLISHER@" Version="@VERSION@" ProcessorArchitecture="x64" />
 
@@ -64,6 +65,19 @@
       </Extensions>
     </Application>
   </Applications>
+
+  <!-- A packaged app doesn't search PATH or the directories Python adds for DLLs, so Qt's
+       plugins (qml\QtQuick\Controls\Basic\*.dll) couldn't find Qt6*.dll next to PySide6.
+       These folders are searched for every DLL the app loads. -->
+  <Extensions>
+    <uap6:Extension Category="windows.loaderSearchPathOverride">
+      <uap6:LoaderSearchPathOverride>
+        <uap6:LoaderSearchPathEntry FolderPath="_internal\PySide6" />
+        <uap6:LoaderSearchPathEntry FolderPath="_internal\shiboken6" />
+        <uap6:LoaderSearchPathEntry FolderPath="_internal" />
+      </uap6:LoaderSearchPathOverride>
+    </uap6:Extension>
+  </Extensions>
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
