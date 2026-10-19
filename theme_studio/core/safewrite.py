@@ -174,13 +174,24 @@ class Session:
             self.run_restore()
         return changed
 
+    def remember_call(self, key, func, args, what):
+        """Like remember_cmd, but the undo is a Python function ("module:function"), for
+        things that have no command line (Windows wallpapers, a JSON key). First apply wins."""
+        if not any(e["key"] == key for e in self.state["restore"]):
+            self.state["restore"].append({"key": key, "py": func, "args": list(args), "what": what})
+
     def run_restore(self):
         """Put live settings back (colour scheme, wallpaper, reloads). Runs last, once every file is back."""
+        import importlib
         import subprocess
         for e in list(self.state["restore"]):
             try:
-                subprocess.run(e["argv"], capture_output=True, text=True, timeout=30)
-            except (OSError, subprocess.SubprocessError):
+                if "py" in e:
+                    module, func = e["py"].split(":")
+                    getattr(importlib.import_module(module), func)(*e["args"])
+                else:
+                    subprocess.run(e["argv"], capture_output=True, text=True, timeout=30)
+            except Exception:   # one failing undo must not stop the others
                 pass
             self.state["restore"].remove(e)
         if getattr(self, "_broadcast", False):

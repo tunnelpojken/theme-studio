@@ -7,12 +7,15 @@ from .konsole import Konsole
 from .noctalia import Noctalia
 from .wallpaper import Wallpaper
 from .waybar import Waybar
+from .windows_accent import WindowsAccent
 from .windows_mode import WindowsMode
+from .windows_terminal import WindowsTerminal
 from .windows_theme import WindowsTheme
+from .windows_wallpaper import WindowsWallpaper
 from ..core.platform import NAME as _PLATFORM
 
 _EVERY = (Hyprland(), Kitty(), Noctalia(), Waybar(), Konsole(), Fish(), Fastfetch(), KDE(), Wallpaper(),
-          WindowsMode(), WindowsTheme())
+          WindowsMode(), WindowsAccent(), WindowsWallpaper(), WindowsTerminal(), WindowsTheme())
 # Only the targets that can exist on this system: Linux ones never show up on Windows and back
 ALL = {t.name: t for t in _EVERY if _PLATFORM in t.platforms}
 
