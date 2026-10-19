@@ -7,8 +7,12 @@ prompt, or a preset, in a NERV-style window. Every theme is previewed first, eve
 change to your configs is listed before it happens, and one button puts everything
 back the way it was.
 
-<!-- Screenshots: put PNGs in docs/ and link them here, e.g.
-<p align="center"><img src="docs/window.png" width="900"></p> -->
+<p align="center"><img src="docs/window-dark.png" width="900" alt="Theme Studio making a dark theme from a wallpaper"></p>
+
+<p align="center">
+  <img src="docs/window-light.png" width="445" alt="The same wallpaper as a light theme">
+  <img src="docs/window-apply.png" width="445" alt="Every change is listed before it happens">
+</p>
 
 - **From a wallpaper**: colours are measured from the picture (no AI needed); the same
   image always gives the same theme. Two wallpapers = one per monitor.
