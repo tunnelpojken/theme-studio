@@ -1,0 +1,38 @@
+{
+  "name": "nord",
+  "title": "Nord",
+  "palette": "Nord",
+  "note": "Arctic polar night with frost blues (official Nord palette)",
+  "primary": "#88c0d0",
+  "secondary": "#81a1c1",
+  "tertiary": "#8fbcbb",
+  "error": "#bf616a",
+  "surface": "#2e3440",
+  "variant": "#3b4252",
+  "hover": "#434c5e",
+  "outline": "#4c566a",
+  "shadow": "#242933",
+  "on_surface": "#eceff4",
+  "on_variant": "#d8dee9",
+  "normal": [
+    "#3b4252",
+    "#bf616a",
+    "#a3be8c",
+    "#ebcb8b",
+    "#81a1c1",
+    "#b48ead",
+    "#88c0d0",
+    "#e5e9f0"
+  ],
+  "bright": [
+    "#4c566a",
+    "#bf616a",
+    "#a3be8c",
+    "#ebcb8b",
+    "#81a1c1",
+    "#b48ead",
+    "#8fbcbb",
+    "#eceff4"
+  ],
+  "dark": true
+}

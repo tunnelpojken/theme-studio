@@ -1,0 +1,38 @@
+{
+  "name": "diablo-iv",
+  "title": "Diablo IV",
+  "palette": "Diablo4",
+  "note": "Blood red on charred stone, ember orange and bone",
+  "primary": "#c8282a",
+  "secondary": "#e0782e",
+  "tertiary": "#d8c8a0",
+  "error": "#f05a2a",
+  "surface": "#0c0908",
+  "variant": "#17110f",
+  "hover": "#231916",
+  "outline": "#3a2722",
+  "shadow": "#040202",
+  "on_surface": "#e6dccb",
+  "on_variant": "#a8968a",
+  "normal": [
+    "#17110f",
+    "#c8282a",
+    "#8aa05a",
+    "#d8a24a",
+    "#6a7aa0",
+    "#a0506a",
+    "#7aa0a0",
+    "#e6dccb"
+  ],
+  "bright": [
+    "#4a3a34",
+    "#e84848",
+    "#a8bc78",
+    "#ecc06e",
+    "#8a9abc",
+    "#c07088",
+    "#9abcbc",
+    "#f8f0e4"
+  ],
+  "dark": true
+}

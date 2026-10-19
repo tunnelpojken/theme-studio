@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Theme Studio
+GenericName=Desktop theme generator
+Comment=Make desktop themes from wallpapers, prompts or presets
+Exec=theme-studio-gui
+Icon=theme-studio
+Terminal=false
+Categories=Settings;DesktopSettings;Graphics;
+StartupWMClass=theme-studio

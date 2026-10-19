@@ -1,0 +1,34 @@
+# Maintainer: Fested <tunnelpojken at gmail dot com>
+pkgname=theme-studio
+pkgver=0.4.0
+pkgrel=1
+pkgdesc="Make desktop themes for Hyprland and KDE from wallpapers, presets or a prompt, with a NERV-style GUI"
+arch=('any')
+url="https://github.com/tunnelpojken/theme-studio"
+license=('MIT')
+depends=('python' 'python-pillow' 'pyside6')
+makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
+optdepends=(
+  'ollama: local model for directive-only themes'
+  'hyprland: Hyprland target'
+  'kitty: kitty target'
+  'awww: wallpapers per monitor on Hyprland (or swww / hyprpaper)'
+  'fastfetch: fastfetch target'
+  'plasma-workspace: KDE colour scheme target'
+)
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('SKIP')   # replace with the real sum: updpkgsums (pacman-contrib) after tagging v$pkgver
+
+build() {
+  cd "$pkgname-$pkgver"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+  install -Dm644 theme-studio.desktop "$pkgdir/usr/share/applications/theme-studio.desktop"
+  install -Dm644 theme_studio/gui/theme-studio.svg \
+    "$pkgdir/usr/share/icons/hicolor/scalable/apps/theme-studio.svg"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

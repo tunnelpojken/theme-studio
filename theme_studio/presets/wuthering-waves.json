@@ -1,0 +1,38 @@
+{
+  "name": "wuthering-waves",
+  "title": "Wuthering Waves",
+  "palette": "WutheringWaves",
+  "note": "Night indigo, resonance gold and tacet teal",
+  "primary": "#e6c578",
+  "secondary": "#6fd6d0",
+  "tertiary": "#b7a6f0",
+  "error": "#e8566a",
+  "surface": "#0b0d17",
+  "variant": "#151a2b",
+  "hover": "#1e2540",
+  "outline": "#2c3556",
+  "shadow": "#04050a",
+  "on_surface": "#ece8de",
+  "on_variant": "#a9adc4",
+  "normal": [
+    "#151a2b",
+    "#e8566a",
+    "#7fd6a8",
+    "#e6c578",
+    "#7a9cf0",
+    "#b7a6f0",
+    "#6fd6d0",
+    "#ece8de"
+  ],
+  "bright": [
+    "#4a5272",
+    "#f07a8a",
+    "#a0e6c4",
+    "#f0d89a",
+    "#9ab6f6",
+    "#cfc2f6",
+    "#96e6e2",
+    "#faf7f0"
+  ],
+  "dark": true
+}

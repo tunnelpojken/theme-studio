@@ -1,0 +1,38 @@
+{
+  "name": "elite-dangerous",
+  "title": "Elite Dangerous",
+  "palette": "EliteDangerous",
+  "note": "Cockpit HUD orange on black, holo-blue shields",
+  "primary": "#ff7100",
+  "secondary": "#ffa040",
+  "tertiary": "#4fb8ff",
+  "error": "#ff2a2a",
+  "surface": "#050403",
+  "variant": "#120c06",
+  "hover": "#1e1308",
+  "outline": "#3a2410",
+  "shadow": "#000000",
+  "on_surface": "#ffd8b0",
+  "on_variant": "#c08a5a",
+  "normal": [
+    "#120c06",
+    "#ff2a2a",
+    "#7ccf5a",
+    "#ffb000",
+    "#4fb8ff",
+    "#d0703a",
+    "#ff9a3c",
+    "#ffd8b0"
+  ],
+  "bright": [
+    "#5a3a1c",
+    "#ff5a4a",
+    "#9ee07c",
+    "#ffc840",
+    "#7ccaff",
+    "#e89060",
+    "#ffb870",
+    "#fff0e0"
+  ],
+  "dark": true
+}

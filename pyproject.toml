@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "theme-studio"
+version = "0.4.0"
+description = "Make desktop themes for Hyprland and KDE from wallpapers, presets or a prompt, with a NERV-style GUI"
+readme = "README.md"
+authors = [{ name = "Fested" }]
+keywords = ["hyprland", "kde", "theme", "ricing", "wallpaper", "noctalia", "kitty"]
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = ["Pillow>=10.1"]
+
+[project.urls]
+Homepage = "https://github.com/tunnelpojken/theme-studio"
+Issues = "https://github.com/tunnelpojken/theme-studio/issues"
+
+[project.optional-dependencies]
+gui = ["PySide6>=6.6"]
+
+[project.scripts]
+theme-studio = "theme_studio.cli:main"
+theme-studio-gui = "theme_studio.gui.app:main"
+
+[tool.setuptools.packages.find]
+include = ["theme_studio*"]
+
+[tool.setuptools.package-data]
+theme_studio = ["presets/*.json", "templates/*", "gui/qml/*.qml", "gui/*.svg"]

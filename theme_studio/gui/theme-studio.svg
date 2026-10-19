@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0b1a24"/>
+      <stop offset="100%" stop-color="#050a0e"/>
+    </radialGradient>
+
+    <!-- Cyan Glow Filter -->
+    <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Intense Center Glow Filter -->
+    <filter id="intenseGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur1"/>
+      <feGaussianBlur stdDeviation="2" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark HUD Background Container -->
+  <rect width="512" height="512" rx="96" fill="url(#bgGlow)"/>
+  
+  <!-- Outer Corner Tech Brackets -->
+  <path d="M 64,104 L 64,64 L 104,64" stroke="#5cb8d6" stroke-width="2" fill="none" opacity="0.4"/>
+  <path d="M 448,104 L 448,64 L 408,64" stroke="#5cb8d6" stroke-width="2" fill="none" opacity="0.4"/>
+  <path d="M 64,408 L 64,448 L 104,448" stroke="#5cb8d6" stroke-width="2" fill="none" opacity="0.4"/>
+  <path d="M 448,408 L 448,448 L 408,448" stroke="#5cb8d6" stroke-width="2" fill="none" opacity="0.4"/>
+
+  <!-- Subtle Tech Grid Lines -->
+  <circle cx="256" cy="256" r="210" stroke="#5cb8d6" stroke-width="1" stroke-dasharray="4,8" fill="none" opacity="0.15"/>
+  <circle cx="256" cy="256" r="170" stroke="#5cb8d6" stroke-width="1" stroke-dasharray="2,6" fill="none" opacity="0.2"/>
+
+  <!-- Main Outer Hexagon Ring -->
+  <polygon points="256,70 410,159 410,337 256,426 102,337 102,159" 
+           fill="none" stroke="#5cb8d6" stroke-width="3" opacity="0.5"/>
+
+  <!-- Tech Accents on Outer Hexagon -->
+  <polygon points="256,82 398,164 398,332 256,414 114,332 114,164" 
+           fill="none" stroke="#68e0e0" stroke-width="5" filter="url(#cyanGlow)"/>
+
+  <!-- Cut-out Corner Lines / Data Nodes -->
+  <line x1="256" y1="42" x2="256" y2="70" stroke="#68e0e0" stroke-width="2" opacity="0.7"/>
+  <line x1="256" y1="426" x2="256" y2="454" stroke="#68e0e0" stroke-width="2" opacity="0.7"/>
+  <line x1="80" y1="146" x2="102" y2="159" stroke="#68e0e0" stroke-width="2" opacity="0.7"/>
+  <line x1="432" y1="146" x2="410" y2="159" stroke="#68e0e0" stroke-width="2" opacity="0.7"/>
+
+  <!-- Inner Solid Glowing Hexagon Core -->
+  <polygon points="256,110 372,177 372,311 256,378 140,311 140,177" 
+           fill="#0d2430" stroke="#88ffff" stroke-width="4" filter="url(#cyanGlow)"/>
+
+  <!-- MAGI System Triad Node Symbol (Bottom Left Accent) -->
+  <g filter="url(#cyanGlow)" opacity="0.9">
+    <!-- Connecting Triangle -->
+    <polygon points="140,311 100,380 180,380" fill="none" stroke="#68e0e0" stroke-width="2"/>
+    <!-- 3 Nodes -->
+    <circle cx="140" cy="311" r="16" fill="#08141c" stroke="#68e0e0" stroke-width="3"/>
+    <circle cx="100" cy="380" r="16" fill="#08141c" stroke="#68e0e0" stroke-width="3"/>
+    <circle cx="180" cy="380" r="16" fill="#08141c" stroke="#68e0e0" stroke-width="3"/>
+  </g>
+
+  <!-- Top Right Rocket / Deployment Node Accent -->
+  <g transform="translate(350, 110) rotate(15)" filter="url(#cyanGlow)">
+    <path d="M0,20 C10,10 25,0 40,-5 C35,15 25,30 5,40 Z" fill="#08141c" stroke="#68e0e0" stroke-width="3"/>
+    <circle cx="22" cy="14" r="4" fill="#68e0e0"/>
+  </g>
+
+  <!-- Center Typography / Emblem: TS (Theme Studio) -->
+  <g filter="url(#intenseGlow)">
+    <!-- Custom Futuristic Geometric 'T' -->
+    <path d="M 175,220 L 245,220 M 210,220 L 210,292" 
+          stroke="#ffffff" stroke-width="14" stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
+    
+    <!-- Custom Futuristic Geometric 'S' -->
+    <path d="M 330,228 L 275,228 L 275,252 L 330,260 L 330,284 L 275,284" 
+          stroke="#ffffff" stroke-width="14" stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
+  </g>
+
+</svg>

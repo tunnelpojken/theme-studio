@@ -1,0 +1,38 @@
+{
+  "name": "kawaii",
+  "title": "Kawaii",
+  "palette": "Kawaii",
+  "note": "Pastel pink, lavender and mint on soft plum",
+  "primary": "#ff9ecf",
+  "secondary": "#b8a4ff",
+  "tertiary": "#9ef0d0",
+  "error": "#ff6b8b",
+  "surface": "#1e1622",
+  "variant": "#2a1f30",
+  "hover": "#36283d",
+  "outline": "#4a3554",
+  "shadow": "#120c15",
+  "on_surface": "#fbe4f0",
+  "on_variant": "#c9a8c4",
+  "normal": [
+    "#2a1f30",
+    "#ff6b8b",
+    "#9ef0d0",
+    "#ffe29a",
+    "#9ec8ff",
+    "#ff9ecf",
+    "#a0eef0",
+    "#fbe4f0"
+  ],
+  "bright": [
+    "#6a5070",
+    "#ff8fa8",
+    "#bdf6e0",
+    "#ffedb8",
+    "#bcdaff",
+    "#ffbde0",
+    "#c2f5f6",
+    "#ffffff"
+  ],
+  "dark": true
+}

@@ -1,0 +1,38 @@
+{
+  "name": "pragmata",
+  "title": "Pragmata",
+  "palette": "Pragmata",
+  "note": "Lunar grey and white, signal red with hologram cyan",
+  "primary": "#ff4a4a",
+  "secondary": "#7fd8f0",
+  "tertiary": "#c8d0d8",
+  "error": "#ff8a3a",
+  "surface": "#0c0e11",
+  "variant": "#16191e",
+  "hover": "#20252c",
+  "outline": "#2e343c",
+  "shadow": "#030405",
+  "on_surface": "#e8eef2",
+  "on_variant": "#9aa4ae",
+  "normal": [
+    "#16191e",
+    "#ff4a4a",
+    "#6ed6a0",
+    "#e8c46a",
+    "#6aa8e8",
+    "#c08ae8",
+    "#7fd8f0",
+    "#e8eef2"
+  ],
+  "bright": [
+    "#4a525c",
+    "#ff7070",
+    "#92e6bc",
+    "#f2d68e",
+    "#90c0f0",
+    "#d4a8f0",
+    "#a6e6f6",
+    "#ffffff"
+  ],
+  "dark": true
+}

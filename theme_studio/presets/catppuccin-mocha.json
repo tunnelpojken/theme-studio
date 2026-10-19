@@ -1,0 +1,38 @@
+{
+  "name": "catppuccin-mocha",
+  "title": "Catppuccin Mocha",
+  "palette": "CatppuccinMocha",
+  "note": "Soothing pastels, mauve and blue (official Mocha palette)",
+  "primary": "#cba6f7",
+  "secondary": "#89b4fa",
+  "tertiary": "#f5c2e7",
+  "error": "#f38ba8",
+  "surface": "#1e1e2e",
+  "variant": "#313244",
+  "hover": "#45475a",
+  "outline": "#585b70",
+  "shadow": "#11111b",
+  "on_surface": "#cdd6f4",
+  "on_variant": "#bac2de",
+  "normal": [
+    "#45475a",
+    "#f38ba8",
+    "#a6e3a1",
+    "#f9e2af",
+    "#89b4fa",
+    "#f5c2e7",
+    "#94e2d5",
+    "#bac2de"
+  ],
+  "bright": [
+    "#585b70",
+    "#f38ba8",
+    "#a6e3a1",
+    "#f9e2af",
+    "#89b4fa",
+    "#f5c2e7",
+    "#94e2d5",
+    "#a6adc8"
+  ],
+  "dark": true
+}

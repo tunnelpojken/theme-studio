@@ -1,0 +1,304 @@
+# ══════════════════════════════════════════════════════════════════════════════
+#  Rei Ayanami — Noctalia V5 Theme
+#  「I am not a doll.」
+#
+#  Palette: deep void black / abyssal navy + icy pale cyan / white-blue
+#  Accent:  LCL amber-orange for warnings/error (Unit-00 visor)
+#  Font:    Inter (or your preferred sans — change font_family below)
+#
+#  Drop this file at: ~/.config/noctalia/config.toml
+#  Hot-reload is automatic — save the file and watch it apply live.
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  THEME
+#  community palette "Oxocarbon" is a great cold dark base; we override
+#  it further with the bar capsule colors below to push it EVA-blue.
+#  Alternatively, use source = "builtin" + builtin = "Nord" for a similar feel.
+# ─────────────────────────────────────────────────────────────────────────────
+[theme]
+mode             = "dark"
+source           = "custom"
+custom_palette = "NervRei"   # deep near-black background, blue-tinted surface
+# Swap to the line below if you prefer pure built-in (no network fetch):
+# source  = "builtin"
+# builtin = "Nord"
+
+# Propagate colors to external apps (kitty, gtk3/4, etc.)
+[theme.templates]
+enable_builtin_templates   = true
+builtin_ids                = ["gtk3", "gtk4", "kitty"]  # add "foot" / "kitty" if desired
+enable_community_templates = true
+community_ids               = ["pywalfox"]
+enable_user_templates      = true
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  SHELL — global typography & behaviour
+# ─────────────────────────────────────────────────────────────────────────────
+[shell]
+font_family      = "Orbitron"          # change to "Noto Sans" / "sans-serif" if Inter is absent
+ui_scale         = 1.0
+time_format      = "{:%H:%M}"
+date_format      = "%A %d %B"       # "Monday 13 May" — clean, no noise
+telemetry_enabled = false
+polkit_agent     = false
+clipboard_enabled = true
+clipboard_auto_paste = "auto"
+
+# Slightly faster, crisper animations — suits Rei's minimalist affect
+[shell.animation]
+enabled = true
+speed   = 1.3
+
+# Subtle shadow — depth without warmth
+[shell.shadow]
+blur     = 14
+offset_x = 0
+offset_y = 3
+alpha    = 0.65
+
+# Glass-adjacent panel transparency — like LCL fluid behind acrylic
+[shell.panel]
+background_blur       = true
+transparency_mode     = "soft"
+attach_control_center = true
+attach_wallpaper      = true
+attach_launcher       = false
+attach_clipboard      = false
+
+# Subtle screen corners (optional — remove if you dislike them)
+[shell.screen_corners]
+enabled = true
+size    = 10
+
+# OSD in top-right, out of the way
+[osd]
+position  = "top_right"
+lock_keys = false
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  WIDGET DEFINITIONS
+#  Rei palette hex values:
+#    Deep void:    #0a0e14   (bar background)
+#    Abyss navy:   #0d1b2a
+#    Unit-00 cyan: #9fd8e8   (primary accent — pale icy blue)
+#    Soul white:   #c9dce8   (on_surface text)
+#    LCL amber:    #e8a262   (error / warning accent)
+#    Muted glass:  #1a2a3a   (capsule fill)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Clock — 24-hour, clean, no seconds on the bar
+[widget.clock]
+format          = "{:%H:%M}"
+vertical_format = "{:%H\n%M}"
+
+# A second clock instance showing date, placed in the bar start section
+[widget.date]
+type   = "clock"
+format = "{:%a %d}"
+
+# Workspaces — number labels only
+[widget.workspaces]
+label_source = "id"
+show_labels = true
+
+# Taskbar — flat, no workspace grouping by default
+[widget.taskbar]
+group_by_workspace = false
+
+# Control-center trigger — NERV hexagon glyph
+[widget.control-center]
+glyph           = "hexagon"
+use_distro_logo = false
+capsule         = true
+capsule_fill    = "#1a2a3a"
+capsule_border  = "#9fd8e8"
+color           = "#9fd8e8"
+
+# Launcher — terminal/search glyph
+[widget.launcher]
+glyph           = "terminal-2"
+use_distro_logo = false
+capsule         = true
+capsule_fill    = "#1a2a3a"
+capsule_border  = "#9fd8e8"
+color           = "#9fd8e8"
+
+# Volume — label off, capsule on
+[widget.volume]
+show_label      = false
+capsule         = true
+capsule_fill    = "#0f1c2a"
+color           = "#9fd8e8"
+
+# Audio visualizer — icy cyan gradient
+[widget.audio-vis]
+type           = "audio_visualizer"
+width          = 52
+bands          = 18
+mirrored       = true
+show_when_idle = false
+low_color      = "#9fd8e8"
+high_color     = "#c9dce8"
+
+# Media — slightly wider for long track names
+[widget.media]
+min_length = 90
+max_length = 240
+art_size   = 20
+
+# System monitor — CPU usage, graph style, no label (icon+sparkline = minimal)
+[widget.cpu]
+type       = "sysmon"
+stat       = "cpu_usage"
+visualization = "graph"
+show_value = false
+
+# RAM as text readout
+[widget.ram]
+type       = "sysmon"
+stat       = "ram_used"
+visualization = "none"
+show_value = true
+
+# Network — SSID hidden, icon only
+[widget.network]
+show_label = false
+capsule    = true
+capsule_fill = "#0f1c2a"
+
+# Bluetooth — icon only
+[widget.bluetooth]
+show_label = false
+
+# Battery — auto-hides on desktop
+[widget.battery]
+
+# Brightness — icon only
+[widget.brightness]
+show_label = false
+
+# Notifications — hide badge when inbox empty
+[widget.notifications]
+hide_when_no_unread = true
+capsule             = true
+capsule_fill        = "#0f1c2a"
+color               = "#9fd8e8"
+
+# Tray — drawer mode keeps the bar clean
+[widget.tray]
+drawer         = true
+drawer_columns = 3
+
+# Session — lock icon (Rei's quiet detachment)
+[widget.session]
+glyph   = "lock"
+capsule = true
+capsule_fill   = "#1a2a3a"
+capsule_border = "#9fd8e8"
+color          = "#9fd8e8"
+
+# Wallpaper picker glyph
+[widget.wallpaper]
+glyph = "photo"
+
+# Clipboard glyph
+[widget.clipboard]
+glyph = "clipboard"
+
+# Nightlight
+[widget.nightlight]
+
+# Theme-mode toggle
+[widget.theme_mode]
+
+# Caffeine / idle inhibitor (angel-deterrence mode)
+[widget.caffeine]
+
+# Small spacer used between widget groups
+[widget.gap-sm]
+type   = "spacer"
+length = 4
+
+[widget.gap-md]
+type   = "spacer"
+length = 12
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  BAR — single top bar, floating island style
+#  Rei aesthetic: ice-dark background, thin cyan border glow, tight radius
+# ─────────────────────────────────────────────────────────────────────────────
+[bar]
+order = ["main"]
+
+[bar.main]
+position           = "left"
+enabled            = true
+auto_hide          = false
+reserve_space      = true
+
+thickness          = 36
+background_opacity = 0.5
+shadow             = true
+contact_shadow     = true
+attach_panels      = true
+
+# Floating island — horizontal margins give it the "pill in space" look
+margin_h           = 16
+margin_v           = 8
+padding            = 12
+widget_spacing     = 5
+
+# Tight corner radius — not bubbly, just softened
+radius             = 10
+
+# Default capsule style: dark navy fill, no border by default
+# Individual widgets override per their definitions above
+capsule            = false
+capsule_fill       = "#0f1c2a"
+capsule_opacity    = 0.95
+# capsule_border   = "#9fd8e8"   # uncomment to give ALL widgets a cyan border
+
+scale              = 1.0
+
+# ── Widget layout ──────────────────────────────────────────────────────────
+# Left:   launcher | date | workspaces | taskbar
+# Center: clock
+# Right:  audio-vis | media | cpu | ram | network | bluetooth | volume | notifications | tray | session
+start  = ["launcher", "gap-sm", "date", "gap-sm", "workspaces", "gap-sm", "taskbar"]
+center = ["clock"]
+end    = [
+    "audio-vis",
+    "gap-sm",
+    "media",
+    "gap-md",
+    "cpu",
+    "ram",
+    "gap-sm",
+    "network",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "gap-sm",
+    "notifications",
+    "clipboard",
+    "tray",
+    "gap-sm",
+    "control-center",
+    "session",
+]
+
+[widget.lyrics]
+type           = "custom_button"
+text_command   = "python ~/.local/bin/ytm-lyrics.py"
+text_stream    = true
+parse_json     = true
+show_icon      = false
+max_text_length = { horizontal = 60, vertical = 0 }
+hide_mode      = "alwaysExpanded"
+text_collapse  = "♪"

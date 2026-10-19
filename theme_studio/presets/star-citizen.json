@@ -1,0 +1,38 @@
+{
+  "name": "star-citizen",
+  "title": "Star Citizen",
+  "palette": "StarCitizen",
+  "note": "MobiGlas holo-cyan on deep-space navy, amber warnings",
+  "primary": "#4fd1e8",
+  "secondary": "#2a9fd6",
+  "tertiary": "#f0a63a",
+  "error": "#e0503c",
+  "surface": "#070b10",
+  "variant": "#0e1822",
+  "hover": "#15263a",
+  "outline": "#1f3a52",
+  "shadow": "#020406",
+  "on_surface": "#d6e6ee",
+  "on_variant": "#8fb4c6",
+  "normal": [
+    "#0e1822",
+    "#e0503c",
+    "#4fd19a",
+    "#f0a63a",
+    "#2a9fd6",
+    "#8a8fe0",
+    "#4fd1e8",
+    "#d6e6ee"
+  ],
+  "bright": [
+    "#3a5468",
+    "#f06a58",
+    "#72e4b2",
+    "#f6c06a",
+    "#5ab8ea",
+    "#a8acf0",
+    "#82e2f2",
+    "#f0f8fc"
+  ],
+  "dark": true
+}

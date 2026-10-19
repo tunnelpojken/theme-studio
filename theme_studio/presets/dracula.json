@@ -1,0 +1,38 @@
+{
+  "name": "dracula",
+  "title": "Dracula",
+  "palette": "Dracula",
+  "note": "Vampire purple and pink on night grey (official Dracula palette)",
+  "primary": "#bd93f9",
+  "secondary": "#ff79c6",
+  "tertiary": "#8be9fd",
+  "error": "#ff5555",
+  "surface": "#282a36",
+  "variant": "#343746",
+  "hover": "#44475a",
+  "outline": "#6272a4",
+  "shadow": "#191a21",
+  "on_surface": "#f8f8f2",
+  "on_variant": "#c0c4d6",
+  "normal": [
+    "#21222c",
+    "#ff5555",
+    "#50fa7b",
+    "#f1fa8c",
+    "#bd93f9",
+    "#ff79c6",
+    "#8be9fd",
+    "#f8f8f2"
+  ],
+  "bright": [
+    "#6272a4",
+    "#ff6e6e",
+    "#69ff94",
+    "#ffffa5",
+    "#d6acff",
+    "#ff92df",
+    "#a4ffff",
+    "#ffffff"
+  ],
+  "dark": true
+}

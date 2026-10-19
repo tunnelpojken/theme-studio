@@ -1,0 +1,38 @@
+{
+  "name": "sweet",
+  "title": "Sweet",
+  "palette": "Sweet",
+  "note": "Candy neon on midnight blue, magenta and cyan (Sweet-inspired)",
+  "primary": "#c74ded",
+  "secondary": "#00c1e4",
+  "tertiary": "#ff6ac1",
+  "error": "#ed254e",
+  "surface": "#161925",
+  "variant": "#1e2132",
+  "hover": "#272b40",
+  "outline": "#363a52",
+  "shadow": "#0b0c13",
+  "on_surface": "#dcdfe4",
+  "on_variant": "#a3a8bc",
+  "normal": [
+    "#222235",
+    "#ed254e",
+    "#71f79f",
+    "#f9dc5c",
+    "#7cb7ff",
+    "#c74ded",
+    "#00c1e4",
+    "#dcdfe4"
+  ],
+  "bright": [
+    "#4d5170",
+    "#f45c7b",
+    "#96fab8",
+    "#fbe68a",
+    "#a2ccff",
+    "#d97ff2",
+    "#4fd6ee",
+    "#ffffff"
+  ],
+  "dark": true
+}

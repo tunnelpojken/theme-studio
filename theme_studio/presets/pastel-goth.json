@@ -1,0 +1,38 @@
+{
+  "name": "pastel-goth",
+  "title": "Pastel Goth",
+  "palette": "PastelGoth",
+  "note": "Midnight plum with pastel pink, lavender, baby blue and moonlight white",
+  "primary": "#f5a9d0",
+  "secondary": "#b9a3f5",
+  "tertiary": "#a8d4ff",
+  "error": "#ff8fc4",
+  "surface": "#16121c",
+  "variant": "#211a2a",
+  "hover": "#2c2238",
+  "outline": "#463757",
+  "shadow": "#0a080d",
+  "on_surface": "#f6eefc",
+  "on_variant": "#c7b6d8",
+  "normal": [
+    "#211a2a",
+    "#ff8fc4",
+    "#a6ecd2",
+    "#e8c8ff",
+    "#a8d4ff",
+    "#f5a9d0",
+    "#9ee8f0",
+    "#f6eefc"
+  ],
+  "bright": [
+    "#5e4a70",
+    "#ffb0d6",
+    "#c4f4e2",
+    "#f2dcff",
+    "#c6e3ff",
+    "#ffc6e2",
+    "#bff2f7",
+    "#ffffff"
+  ],
+  "dark": true
+}

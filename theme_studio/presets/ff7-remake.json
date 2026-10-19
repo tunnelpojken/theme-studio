@@ -1,0 +1,38 @@
+{
+  "name": "ff7-remake",
+  "title": "Final Fantasy VII Remake",
+  "palette": "FF7Remake",
+  "note": "Mako green over Midgar steel, rust and flower-girl pink",
+  "primary": "#5ee89a",
+  "secondary": "#3fb8a0",
+  "tertiary": "#e88aa8",
+  "error": "#e05a3a",
+  "surface": "#090d0b",
+  "variant": "#121a16",
+  "hover": "#1a2620",
+  "outline": "#26382e",
+  "shadow": "#030504",
+  "on_surface": "#dfeee4",
+  "on_variant": "#98b4a4",
+  "normal": [
+    "#121a16",
+    "#e05a3a",
+    "#5ee89a",
+    "#d8a84a",
+    "#5a9ad8",
+    "#e88aa8",
+    "#4fd8c8",
+    "#dfeee4"
+  ],
+  "bright": [
+    "#445a4e",
+    "#f07a5e",
+    "#8af2b6",
+    "#ecc46e",
+    "#82b6ea",
+    "#f2a8c0",
+    "#7ee8dc",
+    "#f4fbf6"
+  ],
+  "dark": true
+}

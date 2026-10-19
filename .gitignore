@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+# AUR build leftovers
+packaging/aur/src/
+packaging/aur/pkg/
+packaging/aur/*.tar.*
