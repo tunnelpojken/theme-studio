@@ -27,9 +27,27 @@ back the way it was.
 
 ## Install
 
-Arch (AUR, once published): `paru -S theme-studio`
+**Arch / CachyOS / EndeavourOS** — build the package with `makepkg` (the AUR package
+follows once AUR registration reopens). This installs the app, its launcher entry and
+icon, and pulls PySide6 and Pillow from the Arch repos:
 
-From source, any distro with Python 3.11+:
+```bash
+git clone https://github.com/tunnelpojken/theme-studio
+cd theme-studio/packaging/aur
+makepkg -si
+```
+
+Or download the ready-made `.pkg.tar.zst` from
+[Releases](https://github.com/tunnelpojken/theme-studio/releases) and run
+`sudo pacman -U theme-studio-*.pkg.tar.zst`.
+
+**Any distro with Python 3.11+** (pipx):
+
+```bash
+pipx install "theme-studio[gui] @ git+https://github.com/tunnelpojken/theme-studio"
+```
+
+**From a clone, for development:**
 
 ```bash
 git clone https://github.com/tunnelpojken/theme-studio
