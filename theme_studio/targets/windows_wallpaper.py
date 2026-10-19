@@ -27,6 +27,8 @@ class _Wallpaper:
             _fields_ = [("a", ctypes.c_ulong), ("b", ctypes.c_ushort), ("c", ctypes.c_ushort),
                         ("d", ctypes.c_ubyte * 8)]
         ole32 = ctypes.windll.ole32
+        ole32.CoCreateInstance.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_ulong,
+                                           ctypes.c_void_p, ctypes.c_void_p]
         ole32.CoInitialize(None)          # S_FALSE when the thread already has COM: fine
         clsid, iid = GUID(), GUID()
         ole32.CLSIDFromString(CLSID_DesktopWallpaper, ctypes.byref(clsid))
@@ -51,7 +53,10 @@ class _Wallpaper:
         c = self.ctypes
         text = c.wstring_at(raw) if raw else ""
         if raw:
-            c.windll.ole32.CoTaskMemFree(raw)
+            free = c.windll.ole32.CoTaskMemFree
+            free.argtypes = [c.c_void_p]      # a 64-bit address: without this ctypes overflows
+            free.restype = None
+            free(raw)
         return text
 
     def monitors(self):
