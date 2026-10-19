@@ -9,3 +9,4 @@ venv/
 packaging/aur/src/
 packaging/aur/pkg/
 packaging/aur/*.tar.*
+.build-venv/

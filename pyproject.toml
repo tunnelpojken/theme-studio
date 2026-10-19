@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "theme-studio"
-version = "0.4.0"
+version = "0.5.0"
 description = "Make desktop themes for Hyprland and KDE from wallpapers, presets or a prompt, with a NERV-style GUI"
 readme = "README.md"
 authors = [{ name = "Fested" }]

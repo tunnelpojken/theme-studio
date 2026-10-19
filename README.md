@@ -41,6 +41,14 @@ Or download the ready-made `.pkg.tar.zst` from
 [Releases](https://github.com/tunnelpojken/theme-studio/releases) and run
 `sudo pacman -U theme-studio-*.pkg.tar.zst`.
 
+**Windows 11:** download `ThemeStudio-<version>-setup.exe` from
+[Releases](https://github.com/tunnelpojken/theme-studio/releases) and run it (no admin
+needed). Windows may say "Windows protected your PC": the app isn't code-signed yet, so
+click **More info → Run anyway**. A portable `.zip` is there too. On Windows a theme sets
+dark/light mode, the accent colour (Start, taskbar, title bars), the wallpaper, Windows
+Terminal's colours and an entry under Settings → Personalisation → Themes; RESTORE
+ORIGINAL puts it all back. Building it yourself: `packaging/windows/build.ps1`.
+
 **Any distro with Python 3.11+** (pipx):
 
 ```bash
