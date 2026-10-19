@@ -44,7 +44,7 @@ MANIFEST = ".theme-studio.json"
 # ---------------------------------------------------------------- helpers
 
 def user_presets():
-    return Path.home() / ".config/theme-studio/presets"
+    return config_mod.platform.config_dir() / "presets"
 
 
 def preset_files():
@@ -199,7 +199,7 @@ def cmd_list(args, cfg):
         p = Palette.load(f)
         print(f"  {name:<20} {p.note}")
     print(f"\nInstalled themes in {cfg.themes}:")
-    current = (cfg.themes / ".current").read_text().strip() if (cfg.themes / ".current").exists() else None
+    current = (cfg.themes / ".current").read_text(encoding="utf-8").strip() if (cfg.themes / ".current").exists() else None
     if cfg.themes.is_dir():
         presets = preset_files()
         for d in sorted(x for x in cfg.themes.iterdir() if x.is_dir() and not x.name.startswith(".")):
@@ -235,11 +235,11 @@ def load_theme(cfg, name):
     if pj.exists():
         return Palette.load(pj)
     toml = folder / "noctalia.toml"
-    m = re.search(r'custom_palette\s*=\s*"([^"]+)"', toml.read_text()) if toml.exists() else None
+    m = re.search(r'custom_palette\s*=\s*"([^"]+)"', toml.read_text(encoding="utf-8")) if toml.exists() else None
     src = cfg.noctalia_palettes / f"{m.group(1)}.json" if m else None
     if not src or not src.exists():
         raise ValueError(f"'{name}' has no palette.json and no Noctalia palette to read its colours from")
-    data = json.loads(src.read_text())
+    data = json.loads(src.read_text(encoding="utf-8"))
     d, term = data["dark"], data["dark"]["terminal"]
     from .core.palette import ANSI
     return Palette(
@@ -259,7 +259,7 @@ def write_theme(p, cfg, selected, images, force, plan=None):
             print(f"  skip (exists): {path}")
             continue
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(text)
+        path.write_text(text, encoding="utf-8")
         written.append(path)
         print(f"  wrote: {path}")
     # Wallpapers: wp1 = main monitor, wp2 = second (reuses wp1 if only one image)
@@ -283,10 +283,10 @@ def write_theme(p, cfg, selected, images, force, plan=None):
             print(f"  wrote: {dest}")
     # Manifest, so 'remove' knows exactly what this tool created
     manifest = folder / MANIFEST
-    old = json.loads(manifest.read_text()).get("files", []) if manifest.exists() else []
+    old = json.loads(manifest.read_text(encoding="utf-8")).get("files", []) if manifest.exists() else []
     files = sorted(set(old) | {str(w) for w in written})
     if files:
-        manifest.write_text(json.dumps({"name": p.name, "files": files}, indent=2) + "\n")
+        manifest.write_text(json.dumps({"name": p.name, "files": files}, indent=2) + "\n", encoding="utf-8")
     missing = [f for f in ("wp1.png", "wp2.png", "preview.png") if not (folder / f).exists()]
     if missing:
         print(f"  still needs: {', '.join(missing)}")
@@ -366,13 +366,13 @@ def cmd_remove(args, cfg):
     if not folder.is_dir():
         sys.exit(f"No theme '{args.name}' in {cfg.themes}")
     current = cfg.themes / ".current"
-    if current.exists() and current.read_text().strip() == args.name:
+    if current.exists() and current.read_text(encoding="utf-8").strip() == args.name:
         sys.exit(f"'{args.name}' is the active theme. Switch to another one first.")
     manifest = folder / MANIFEST
     extra = []
     if manifest.exists():
         # Files this tool wrote outside the theme folder (e.g. the Noctalia palette JSON)
-        extra = [Path(f) for f in json.loads(manifest.read_text())["files"]
+        extra = [Path(f) for f in json.loads(manifest.read_text(encoding="utf-8"))["files"]
                  if not Path(f).is_relative_to(folder) and Path(f).exists()]
     else:
         print(f"Warning: '{args.name}' was not made by theme-studio.")
@@ -412,11 +412,11 @@ def apply_actions(name, cfg, selected):
         for t in rest:
             for path, text in t.plan(p, cfg, folder).items():   # fill in files made before this target existed
                 if not path.exists():
-                    actions.append(Action(f"write missing {path.name}", lambda path=path, text=text: path.write_text(text)))
+                    actions.append(Action(f"write missing {path.name}", lambda path=path, text=text: path.write_text(text, encoding="utf-8")))
             actions += t.apply(p, cfg, folder, s)
     if not cfg.apply_command:
         actions.append(Action(f"remember {name} as the active theme",
-                              lambda: (cfg.themes / ".current").write_text(name + "\n")))
+                              lambda: (cfg.themes / ".current").write_text(name + "\n", encoding="utf-8")))
     return actions, s
 
 
@@ -462,6 +462,7 @@ def unhook_plan(s):
     lines += [f"delete {f}" for f in s.state["owned"] if Path(f).exists()]
     lines += [f"restore {e['key']}={e['old'] if e['old'] is not None else '(unset)'} in {e['file']}"
               for e in s.state["ini"]]
+    lines += [f"restore registry value {e['key']}\\{e['name']}" for e in s.state.get("reg", [])]
     lines += [f"switch back to your {e['what']}" for e in s.state["restore"]]
     return lines
 
@@ -517,13 +518,14 @@ def cmd_init(args, cfg):
     print(text)
     if ask(f"Write this to {path}?", args.yes):
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(text)
+        path.write_text(text, encoding="utf-8")
         print("Written.")
 
 
 # ---------------------------------------------------------------- argparse
 
 def main(argv=None):
+    config_mod.platform.utf8_console()
     ap = argparse.ArgumentParser(prog="theme-studio", description="Make desktop themes from images or presets.")
     sub = ap.add_subparsers(dest="cmd", required=True)
 

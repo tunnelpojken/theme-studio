@@ -16,7 +16,7 @@ def _kitty_font():
     """The font_family set in kitty.conf, if any, so the preview looks like the user's terminal."""
     conf = Path.home() / ".config/kitty/kitty.conf"
     try:
-        for line in conf.read_text().splitlines():
+        for line in conf.read_text(encoding="utf-8").splitlines():
             parts = line.strip().split(None, 1)
             if len(parts) == 2 and parts[0] == "font_family" and parts[1] != "monospace":
                 return parts[1].strip().strip('"')
@@ -50,6 +50,12 @@ def _font(size, bold=False):
                     return ImageFont.truetype(path, size)
         except (OSError, subprocess.SubprocessError):
             pass
+    import os, sys
+    if sys.platform == "win32":   # Windows' own monospace fonts
+        fonts = Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts"
+        for name in (("CascadiaMono-Bold.ttf", "consolab.ttf") if bold else ("CascadiaMono.ttf", "consola.ttf")):
+            if (fonts / name).exists():
+                return ImageFont.truetype(str(fonts / name), size)
     return ImageFont.load_default(size=size)
 
 
@@ -175,6 +181,10 @@ def render(p, out, images=(), cfg=None):
 
 def open_image(path):
     """Open the preview in the user's image viewer, without blocking."""
+    import os, sys
+    if sys.platform == "win32":
+        os.startfile(str(path))   # the default Photos app
+        return True
     for cmd in ("xdg-open", "imv", "feh"):
         if shutil.which(cmd):
             subprocess.Popen([cmd, str(path)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,

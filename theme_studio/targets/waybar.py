@@ -76,7 +76,7 @@ class Waybar(Target):
         dest, main = home(".config/waybar/theme-studio.css"), home(".config/waybar/style.css")
         line = '@import "theme-studio.css";'
         actions = [Action(f"install {dest}", lambda: s.copy_owned(folder / "waybar.css", dest))]
-        empty = main.exists() and not main.read_text().strip()
+        empty = main.exists() and not main.read_text(encoding="utf-8").strip()
         if not main.exists() or empty or s.owns(main):
             # No style of their own (or an empty file): a themed starter style that
             # unhook removes again. An empty file is backed up first by write_owned.

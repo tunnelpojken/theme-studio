@@ -81,7 +81,7 @@ def noctalia_toml(d, template):
 def state_mode(path):
     """The raw [theme] mode value in Noctalia's UI state file (e.g. '"light"'), or None."""
     try:
-        text = path.read_text()
+        text = path.read_text(encoding="utf-8")
     except OSError:
         return None
     inside = False
@@ -104,7 +104,7 @@ class Noctalia(Target):
         return exists("~/.config/noctalia")
 
     def plan(self, p, cfg, folder):
-        template = cfg.noctalia_template.read_text()
+        template = cfg.noctalia_template.read_text(encoding="utf-8")
         return {
             cfg.noctalia_palettes / f"{p.palette}.json": palette_json(p),
             folder / "noctalia.toml": noctalia_toml(p, template),
@@ -134,7 +134,7 @@ class Noctalia(Target):
             def set_mode():
                 s.backup(state)
                 s.remember_ini(state, "theme", "mode", old)
-                state.write_text(set_ini_key(state.read_text(), "theme", "mode", f'"{mode}"'))
+                state.write_text(set_ini_key(state.read_text(encoding="utf-8"), "theme", "mode", f'"{mode}"'))
             actions.append(Action(f"set [theme] mode = \"{mode}\" in {state} (Noctalia's own setting overrides config files)",
                                   set_mode, True))
 

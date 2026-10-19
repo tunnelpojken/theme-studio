@@ -22,6 +22,7 @@ class Action:
 class Target:
     name = "base"
     description = ""
+    platforms = ("linux",)        # where this target can exist: "linux", "windows"
 
     def detect(self):
         """True if this app looks installed on this machine."""
@@ -68,5 +69,7 @@ def run(*cmd, quiet=True):
 
 
 def signal(process, sig):
-    """Send a signal to every process with this exact name (pkill -x)."""
-    run("pkill", f"-{sig}", "-x", process)
+    """Send a signal to every process with this exact name (pkill -x). Linux only."""
+    from ..core.platform import IS_WINDOWS
+    if not IS_WINDOWS:
+        run("pkill", f"-{sig}", "-x", process)

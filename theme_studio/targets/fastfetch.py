@@ -37,6 +37,7 @@ def fastfetch_config(p):
 class Fastfetch(Target):
     name = "fastfetch"
     description = "fastfetch logo + key colours"
+    platforms = ("linux", "windows")     # fastfetch reads ~/.config/fastfetch on Windows too
 
     def detect(self):
         return on_path("fastfetch")

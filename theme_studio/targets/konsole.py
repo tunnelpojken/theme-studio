@@ -44,7 +44,7 @@ def set_ini_key(text, section, key, value):
 def default_profile():
     rc = home(".config/konsolerc")
     if rc.exists():
-        m = re.search(r"^DefaultProfile=(.+)$", rc.read_text(), re.M)
+        m = re.search(r"^DefaultProfile=(.+)$", rc.read_text(encoding="utf-8"), re.M)
         if m:
             return m.group(1).strip()
     return None
@@ -72,10 +72,10 @@ class Konsole(Target):
 
             def set_scheme():
                 s.backup(prof)
-                text = prof.read_text() if prof.exists() else ""
+                text = prof.read_text(encoding="utf-8") if prof.exists() else ""
                 m = re.search(r"^ColorScheme=(.*)$", text, re.M)
                 s.remember_ini(prof, "Appearance", "ColorScheme", m.group(1) if m else None)
-                prof.write_text(set_ini_key(text, "Appearance", "ColorScheme", p.palette))
+                prof.write_text(set_ini_key(text, "Appearance", "ColorScheme", p.palette), encoding="utf-8")
             actions.append(Action(f"set ColorScheme={p.palette} in {prof}", set_scheme, True))
         else:
             # No default profile yet: create one the app owns and make it the default
@@ -86,10 +86,10 @@ class Konsole(Target):
             def make_default():
                 s.write_owned(prof, text)
                 s.backup(rc)
-                old = rc.read_text() if rc.exists() else ""
+                old = rc.read_text(encoding="utf-8") if rc.exists() else ""
                 s.remember_ini(rc, "Desktop Entry", "DefaultProfile", None)
                 rc.parent.mkdir(parents=True, exist_ok=True)
-                rc.write_text(set_ini_key(old, "Desktop Entry", "DefaultProfile", "Theme Studio.profile"))
+                rc.write_text(set_ini_key(old, "Desktop Entry", "DefaultProfile", "Theme Studio.profile"), encoding="utf-8")
             actions.append(Action(f"create profile {prof} and make it Konsole's default", make_default, True))
         actions.append(Action("open Konsole windows pick it up on the next new tab/window", lambda: None))
         return actions

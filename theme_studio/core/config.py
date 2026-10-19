@@ -7,6 +7,8 @@ import tomllib
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from . import platform
+
 PACKAGE = Path(__file__).resolve().parent.parent
 
 # Targets an existing switch.sh already takes care of
@@ -44,30 +46,27 @@ class Config:
 
     @property
     def cache(self):
-        return Path.home() / ".cache/theme-studio"
+        return platform.cache_dir()
 
     @property
     def data(self):
-        return Path.home() / ".local/share/theme-studio"
+        return platform.data_dir()
 
 
 def config_path():
-    return Path.home() / ".config/theme-studio/config.toml"
+    return platform.config_dir() / "config.toml"
 
 
 def load():
     home = Path.home()
     data = {}
     if config_path().exists():
-        data = tomllib.loads(config_path().read_text())
+        data = tomllib.loads(config_path().read_text(encoding="utf-8"))
     paths = data.get("paths", {})
 
     # Existing ~/.config/themes setups (switch.sh style) are used as-is;
     # everyone else gets a folder owned by the app.
-    default_themes = home / ".config/themes"
-    if not default_themes.exists():
-        default_themes = home / ".local/share/theme-studio/themes"
-    themes = _expand(paths.get("themes", default_themes))
+    themes = _expand(paths.get("themes", platform.default_themes_dir()))
 
     template = paths.get("noctalia_template")
     if template:
@@ -83,7 +82,8 @@ def load():
     # Apply: a user's own switcher (switch.sh) runs first if there is one
     apply = data.get("apply", {})
     switch = themes / "switch.sh"
-    command = apply.get("command", f"{switch} {{name}}" if switch.exists() else "")
+    has_switch = switch.exists() and not platform.IS_WINDOWS
+    command = apply.get("command", f"{switch} {{name}}" if has_switch else "")
     handles = apply.get("command_handles", SWITCH_SH_HANDLES if command else [])
 
     contrast = data.get("contrast", {})

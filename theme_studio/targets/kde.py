@@ -55,7 +55,7 @@ def apply_scheme(name):
 def _ini_value(path, section, key):
     """First `key=` value under `[section]` (section may be a prefix like '[Containments]')."""
     try:
-        text = path.read_text()
+        text = path.read_text(encoding="utf-8")
     except OSError:
         return None
     inside = False
@@ -86,7 +86,7 @@ def current_wallpaper():
     """The desktop wallpaper Plasma shows now (an image or a wallpaper package folder)."""
     rc = home(".config/plasma-org.kde.plasma.desktop-appletsrc")
     try:
-        text = rc.read_text()
+        text = rc.read_text(encoding="utf-8")
     except OSError:
         return None
     inside = False

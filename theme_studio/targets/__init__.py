@@ -7,8 +7,14 @@ from .konsole import Konsole
 from .noctalia import Noctalia
 from .wallpaper import Wallpaper
 from .waybar import Waybar
+from .windows_mode import WindowsMode
+from .windows_theme import WindowsTheme
+from ..core.platform import NAME as _PLATFORM
 
-ALL = {t.name: t for t in (Hyprland(), Kitty(), Noctalia(), Waybar(), Konsole(), Fish(), Fastfetch(), KDE(), Wallpaper())}
+_EVERY = (Hyprland(), Kitty(), Noctalia(), Waybar(), Konsole(), Fish(), Fastfetch(), KDE(), Wallpaper(),
+          WindowsMode(), WindowsTheme())
+# Only the targets that can exist on this system: Linux ones never show up on Windows and back
+ALL = {t.name: t for t in _EVERY if _PLATFORM in t.platforms}
 
 
 def select(setting):

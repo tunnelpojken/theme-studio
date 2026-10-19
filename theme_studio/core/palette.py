@@ -51,7 +51,7 @@ class Palette:
 
     @classmethod
     def load(cls, path):
-        return cls.from_dict(json.loads(Path(path).read_text()))
+        return cls.from_dict(json.loads(Path(path).read_text(encoding="utf-8")))
 
 
 def validate(p):
